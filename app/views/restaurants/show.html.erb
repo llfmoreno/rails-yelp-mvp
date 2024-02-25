@@ -1,0 +1,35 @@
+<div class="container">
+  <h1>Details of <%= @restaurant.name %></h1>
+
+  <p>Name: <%= @restaurant.name %></p>
+  <p>Address: <%= @restaurant.address %></p>
+  <p>Phone Number: <%= @restaurant.phone_number %></p>
+  <p>Category: <%= @restaurant.category %></p>
+
+  <%= link_to 'Back to list', restaurants_path, class: "btn btn-primary" %>
+  <br>
+  <br>
+  <%= link_to "Add a review", new_restaurant_review_path(@restaurant), class: "btn btn-primary" %>
+  <br>
+<p><strong>Reviews</strong></p>
+<div class="list-group">
+        <% @restaurant.reviews.each do |review| %>
+          <li class="list-group-item">
+            <small>
+              <% count = 0 %>
+              <% 5.times do %>
+                <% if review.rating > count %>
+                  <i class="fa-solid fa-star"></i>
+                <% else %>
+                  <i class="fa-regular fa-star"></i>
+                <% end %>
+                <% count += 1 %>
+              <% end %>
+            </small>
+            <p><%= review.content %></p>
+          </li>
+        <% end %>
+      </div>
+</ul>
+<br>
+</div>
